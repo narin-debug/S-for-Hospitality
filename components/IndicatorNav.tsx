@@ -29,6 +29,7 @@ export function IndicatorNav({
           id={indicator.id}
           name={indicator.name}
           department={indicator.department}
+          contactName={indicator.contact_name}
           status={statusByIndicator[indicator.id] ?? "not_started"}
           active={pathname === `/indicators/${indicator.id}`}
         />

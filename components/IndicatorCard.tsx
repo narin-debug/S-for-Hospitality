@@ -6,12 +6,14 @@ export function IndicatorCard({
   id,
   name,
   department,
+  contactName,
   status,
   active,
 }: {
   id: string;
   name: string;
   department: string | null;
+  contactName: string | null;
   status: RequestStatus;
   active: boolean;
 }) {
@@ -35,8 +37,11 @@ export function IndicatorCard({
         style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }}
       />
       <p className="font-medium text-ink pr-2">{name}</p>
-      <div className="mt-1.5 flex items-center justify-between gap-2">
-        <span className="text-xs text-slate">{department ?? "담당 부서 미확인"}</span>
+      <div className="mt-1 flex items-center justify-between gap-2">
+        <span className="text-xs text-slate">
+          {department ?? "부서 미확인"}
+          {contactName && <span className="text-ink"> · {contactName}</span>}
+        </span>
         <StatusBadge status={status} />
       </div>
     </Link>

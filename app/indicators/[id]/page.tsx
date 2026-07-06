@@ -33,7 +33,7 @@ export default async function IndicatorDetailPage({
       </div>
 
       <section>
-        <h3 className="text-sm font-medium text-ink mb-3">담당자·증빙 기준</h3>
+        <h3 className="font-display text-lg text-ink mb-3">담당자·증빙 기준</h3>
         <dl className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
           <div>
             <dt className="text-xs text-slate">담당 부서</dt>
@@ -69,12 +69,14 @@ export default async function IndicatorDetailPage({
         </div>
       </section>
 
-      <section>
-        <h3 className="text-sm font-medium text-ink mb-3">
-          {reportingPeriod}년 보고 주기 요청 체크
-        </h3>
-        <ChecklistForm indicatorId={indicator.id} reportingPeriod={reportingPeriod} request={request} />
-      </section>
+      <details className="group border-t border-slate/20 pt-4">
+        <summary className="text-xs text-slate cursor-pointer select-none hover:text-ink">
+          {reportingPeriod}년 보고 주기 요청 체크 (보조 기능)
+        </summary>
+        <div className="mt-3">
+          <ChecklistForm indicatorId={indicator.id} reportingPeriod={reportingPeriod} request={request} />
+        </div>
+      </details>
     </div>
   );
 }
