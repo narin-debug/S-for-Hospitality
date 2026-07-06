@@ -32,29 +32,27 @@ export default async function IndicatorDetailPage({
         )}
       </div>
 
+      <section
+        className="border-l-4 border-shilla-gold bg-shilla-gold/5 pl-4 py-3"
+        aria-label="담당자 요약"
+      >
+        <p className="font-display text-xl text-ink">
+          이 지표 담당자: {indicator.department ?? "부서 미확인"}
+          {" / "}
+          {indicator.contact_name ?? "담당자 미확인"}
+        </p>
+        <p className="mt-1 text-sm text-slate font-mono">
+          최종 확인일: {formatDate(indicator.last_confirmed_at)}
+          {indicator.last_confirmed_by && ` · ${indicator.last_confirmed_by} 확인`}
+        </p>
+      </section>
+
       <section>
-        <h3 className="font-display text-lg text-ink mb-3">담당자·증빙 기준</h3>
+        <h3 className="font-display text-lg text-ink mb-3">증빙 기준</h3>
         <dl className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
-          <div>
-            <dt className="text-xs text-slate">담당 부서</dt>
-            <dd className="text-ink">{indicator.department ?? "미확인"}</dd>
-          </div>
-          <div>
-            <dt className="text-xs text-slate">담당자명</dt>
-            <dd className="text-ink">{indicator.contact_name ?? "미확인"}</dd>
-          </div>
           <div>
             <dt className="text-xs text-slate">연락처</dt>
             <dd className="text-ink">{indicator.contact_info ?? "미확인"}</dd>
-          </div>
-          <div>
-            <dt className="text-xs text-slate">최종 확인일</dt>
-            <dd className="text-ink font-mono">
-              {formatDate(indicator.last_confirmed_at)}
-              {indicator.last_confirmed_by && (
-                <span className="text-slate"> · {indicator.last_confirmed_by}</span>
-              )}
-            </dd>
           </div>
           <div className="col-span-2">
             <dt className="text-xs text-slate">증빙 기준</dt>
