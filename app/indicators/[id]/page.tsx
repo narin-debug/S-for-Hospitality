@@ -24,13 +24,7 @@ export default async function IndicatorDetailPage({
 
   return (
     <div className="max-w-2xl space-y-8">
-      <div>
-        <p className="text-xs text-slate">{indicator.category ?? "지표"}</p>
-        <h2 className="font-display text-2xl text-ink mt-1">{indicator.name}</h2>
-        {indicator.definition && (
-          <p className="mt-2 text-sm text-slate">{indicator.definition}</p>
-        )}
-      </div>
+      <h2 className="font-display text-2xl text-ink">{indicator.name}</h2>
 
       <section
         className="border-l-4 border-shilla-gold bg-shilla-gold/5 pl-4 py-3"
@@ -74,6 +68,26 @@ export default async function IndicatorDetailPage({
         <div className="mt-3">
           <ChecklistForm indicatorId={indicator.id} reportingPeriod={reportingPeriod} request={request} />
         </div>
+      </details>
+
+      <details className="group border-t border-slate/20 pt-4">
+        <summary className="text-xs text-slate cursor-pointer select-none hover:text-ink">
+          📌 K-ESG 기준 보기
+        </summary>
+        <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+          <div>
+            <dt className="text-xs text-slate">진단 항목 코드</dt>
+            <dd className="text-ink font-mono">{indicator.code ?? "미확인"}</dd>
+          </div>
+          <div>
+            <dt className="text-xs text-slate">카테고리</dt>
+            <dd className="text-ink">{indicator.category ?? "미확인"}</dd>
+          </div>
+          <div className="col-span-2">
+            <dt className="text-xs text-slate">공식 정의</dt>
+            <dd className="text-ink whitespace-pre-wrap">{indicator.definition ?? "미확인"}</dd>
+          </div>
+        </dl>
       </details>
     </div>
   );

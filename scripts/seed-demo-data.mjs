@@ -1,5 +1,5 @@
 // 박람회 부스 데모용 예시 데이터 시딩 스크립트.
-// 가상 회사("ljus hotel") 기준 담당자/증빙 정보로 8개 지표를 채우고,
+// 가상 회사("ljus hotel") 기준 담당자/증빙 정보로 14개 지표를 채우고,
 // 이번 보고 주기 체크리스트를 전부 초기 상태로 되돌린다.
 // 방문객이 여러 번 만져서 데이터가 지저분해졌을 때, 부스에서 재실행해 리셋하는 용도로도 쓴다.
 //
@@ -93,6 +93,54 @@ const DEMO_DATA = [
     evidence_criteria: "장애인 고용현황 신고서(고용노동부 제출본 사본)",
     last_confirmed_at: "2026-03-04T09:00:00+09:00",
     last_confirmed_by: "이서준 주임",
+  },
+  {
+    name: "산업재해율",
+    contact_name: "오지훈 과장",
+    contact_info: `jihoon.oh@${DOMAIN} · 내선 5010`,
+    evidence_criteria: "안전보건 관리시스템 산업재해 발생 현황 리포트, 4개년 추세 포함",
+    last_confirmed_at: "2026-04-08T09:00:00+09:00",
+    last_confirmed_by: "오지훈 과장",
+  },
+  {
+    name: "인권 리스크 평가",
+    contact_name: "윤채린 변호사",
+    contact_info: `chaerin.yoon@${DOMAIN} · 내선 6021`,
+    evidence_criteria: "인권 영향평가 결과보고서 + 개선조치 이행 트래커(xlsx)",
+    last_confirmed_at: "2026-02-27T09:00:00+09:00",
+    last_confirmed_by: "윤채린 변호사",
+  },
+  {
+    name: "협력사 ESG 경영",
+    contact_name: "장민서 대리",
+    contact_info: `minseo.jang@${DOMAIN} · 내선 4410`,
+    evidence_criteria: "협력사 ESG 자가진단 결과 취합본 + 등급별 관리 현황표",
+    last_confirmed_at: "2026-05-30T09:00:00+09:00",
+    last_confirmed_by: "장민서 대리",
+  },
+  {
+    name: "전략적 사회공헌",
+    contact_name: "임하람 매니저",
+    contact_info: `haram.lim@${DOMAIN} · 내선 6110`,
+    evidence_criteria: "연간 사회공헌 프로그램 운영보고서 + 예산 집행 내역",
+    last_confirmed_at: "2026-06-15T09:00:00+09:00",
+    last_confirmed_by: "임하람 매니저",
+  },
+  {
+    name: "정보보호 시스템 구축",
+    contact_name: "서도현 팀장",
+    contact_info: `dohyun.seo@${DOMAIN} · 내선 7001`,
+    evidence_criteria: "ISMS 인증서 사본 + 정보보호 관리체계 운영 현황 보고서",
+    last_confirmed_at: "2026-01-22T09:00:00+09:00",
+    last_confirmed_by: "서도현 팀장",
+  },
+  {
+    name: "사회 법/규제 위반",
+    contact_name: "윤채린 변호사",
+    contact_info: `chaerin.yoon@${DOMAIN} · 내선 6021`,
+    evidence_criteria: "사회 부문 법령 위반·제재 현황 집계표 (해당 회차 무위반 시 '해당없음' 명시)",
+    last_confirmed_at: "2026-02-27T09:00:00+09:00",
+    last_confirmed_by: "윤채린 변호사",
   },
 ];
 

@@ -17,6 +17,7 @@ export const REQUEST_STATUS_ORDER: RequestStatus[] = [
 export type Indicator = {
   id: string;
   name: string;
+  code: string | null;
   category: string | null;
   definition: string | null;
   calculation_formula: string | null;
