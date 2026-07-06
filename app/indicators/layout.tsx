@@ -18,7 +18,7 @@ export default async function IndicatorsLayout({
   return (
     <div className="flex flex-col h-screen">
       <header className="border-b border-slate/20 px-6 py-4 flex items-center justify-between gap-4">
-        <h1 className="font-display text-xl text-ink">ESG S지표 확인 도구</h1>
+        <h1 className="font-display text-xl text-ink">ESG S TRACE</h1>
         <div className="flex items-center gap-4">
           <ProgressSummary total={indicators.length} completed={completed} reportingPeriod={reportingPeriod} />
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- 파일 다운로드용 라우트 핸들러라 Link 대상이 아님 */}

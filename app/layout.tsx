@@ -20,7 +20,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ESG S지표 확인 도구",
+  title: "ESG S TRACE",
   description: "S(사회) 지표별 담당 부서·담당자·증빙 기준 조회 및 보고 체크리스트",
 };
 
