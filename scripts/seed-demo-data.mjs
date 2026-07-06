@@ -1,5 +1,5 @@
 // 박람회 부스 데모용 예시 데이터 시딩 스크립트.
-// 가상 회사("블루베이 호텔앤리조트") 기준 담당자/증빙 정보로 8개 지표를 채우고,
+// 가상 회사("ljus hotel") 기준 담당자/증빙 정보로 8개 지표를 채우고,
 // 이번 보고 주기 체크리스트를 전부 초기 상태로 되돌린다.
 // 방문객이 여러 번 만져서 데이터가 지저분해졌을 때, 부스에서 재실행해 리셋하는 용도로도 쓴다.
 //
@@ -26,8 +26,8 @@ const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE
   auth: { persistSession: false },
 });
 
-const COMPANY = "블루베이 호텔앤리조트"; // 가상 회사명 (데모 전용, 실존 기업 아님)
-const DOMAIN = "bluebayhotel.example.com";
+const COMPANY = "ljus hotel"; // 가상 회사명 (데모 전용, 실존 기업 아님)
+const DOMAIN = "ljushotel.example.com";
 
 const DEMO_DATA = [
   {
