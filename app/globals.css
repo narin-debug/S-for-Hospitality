@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #1a1a1a;
+  --color-paper: #f7f4ee;
+  --color-shilla-gold: #a8813d;
+  --color-slate: #55524c;
+  --color-confirmed-green: #2f6b4f;
+  --color-pending-amber: #c1531b;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-paper: var(--color-paper);
+  --color-shilla-gold: var(--color-shilla-gold);
+  --color-slate: var(--color-slate);
+  --color-confirmed-green: var(--color-confirmed-green);
+  --color-pending-amber: var(--color-pending-amber);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-shilla-gold);
+  outline-offset: 2px;
+}
