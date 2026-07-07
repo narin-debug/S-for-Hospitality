@@ -49,7 +49,7 @@ export function ChecklistForm({
         </div>
         <div>
           <label className="block text-xs text-slate mb-1" htmlFor="received_by">
-            수령자
+            담당자
           </label>
           <input
             id="received_by"
