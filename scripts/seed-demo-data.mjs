@@ -1,6 +1,6 @@
 // 박람회 부스 데모용 예시 데이터 시딩 스크립트.
 // 가상 회사("ljus hotel") 기준 담당자/증빙 정보로 14개 지표를 채우고,
-// 이번 보고 주기 체크리스트를 전부 초기 상태로 되돌린다.
+// 이번 보고 주기 체크리스트를 아래 CHECKLIST_STATE에 지정된 "적당히 사용 중인" 상태로 되돌린다.
 // 방문객이 여러 번 만져서 데이터가 지저분해졌을 때, 부스에서 재실행해 리셋하는 용도로도 쓴다.
 //
 // 실행: node scripts/seed-demo-data.mjs
@@ -144,6 +144,39 @@ const DEMO_DATA = [
   },
 ];
 
+// 리셋할 때 되돌아갈 체크리스트 상태. "전부 미시작"이 아니라, 실제로 몇 개는
+// 진행 중인 것처럼 보이도록 고정해둔다 (2026-07-07 실제 데모 중 캡처한 상태).
+const CHECKLIST_STATE = {
+  "목표 수립 및 공시": { status: "not_started" },
+  "신규 채용 및 고용 유지": {
+    status: "requested",
+    received_by: "김순영 주임",
+    memo: "7월 6일, 직전사업연도 채용 현황 리포트 요청",
+  },
+  "정규직 비율": { status: "not_started" },
+  "자발적 이직률": { status: "not_started" },
+  "1인당 교육훈련비": {
+    status: "received",
+    received_by: "박수현 과장",
+    memo: "7월 7일, 이메일로 직전 사업연도 교육예산 집행 내역 자료 수령",
+  },
+  "여성 구성원 비율": { status: "not_started" },
+  "여성 급여 비율": { status: "not_started" },
+  "장애인 고용률": { status: "not_started" },
+  "산업재해율": { status: "not_started" },
+  "인권 리스크 평가": {
+    status: "not_started",
+    received_by: "윤훈선 주임",
+    memo: "6월 27일, 직전 사업연도 인권 영향평가 결과보고서 요청\n6월 27일, 이메일로 수령 완료",
+  },
+  "협력사 ESG 경영": { status: "not_started" },
+  "전략적 사회공헌": { status: "not_started" },
+  "정보보호 시스템 구축": { status: "not_started" },
+  "사회 법/규제 위반": { status: "not_started" },
+};
+
+const REPORTING_PERIOD = String(2026);
+
 async function main() {
   for (const row of DEMO_DATA) {
     const { name, ...fields } = row;
@@ -152,12 +185,33 @@ async function main() {
     console.log(`업데이트 완료: ${name}`);
   }
 
-  const { error: resetError } = await supabase
-    .from("requests")
-    .update({ status: "not_started", memo: null, received_by: null, completed_at: null })
-    .not("id", "is", null);
-  if (resetError) throw new Error(`체크리스트 초기화 실패: ${resetError.message}`);
-  console.log("이번 보고 주기 체크리스트를 전부 미시작 상태로 초기화했습니다.");
+  const { data: indicators, error: indicatorsError } = await supabase
+    .from("indicators")
+    .select("id,name");
+  if (indicatorsError) throw new Error(`지표 조회 실패: ${indicatorsError.message}`);
+  const indicatorIdByName = Object.fromEntries(indicators.map((i) => [i.name, i.id]));
+
+  for (const [name, state] of Object.entries(CHECKLIST_STATE)) {
+    const indicatorId = indicatorIdByName[name];
+    if (!indicatorId) {
+      console.warn(`체크리스트 초기화 건너뜀 (지표 없음): ${name}`);
+      continue;
+    }
+    const { error } = await supabase.from("requests").upsert(
+      {
+        indicator_id: indicatorId,
+        reporting_period: REPORTING_PERIOD,
+        status: state.status,
+        received_by: state.received_by ?? null,
+        memo: state.memo ?? null,
+        completed_at: state.status === "verified" ? new Date().toISOString() : null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "indicator_id,reporting_period" }
+    );
+    if (error) throw new Error(`체크리스트 초기화 실패 (${name}): ${error.message}`);
+  }
+  console.log("이번 보고 주기 체크리스트를 지정된 데모 상태로 되돌렸습니다.");
 }
 
 main().catch((err) => {

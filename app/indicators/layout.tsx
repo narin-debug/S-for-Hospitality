@@ -30,6 +30,9 @@ export default async function IndicatorsLayout({
           </a>
         </div>
       </header>
+      <p className="border-b border-slate/20 bg-slate/5 px-6 py-2 text-sm text-slate text-center">
+        예시 데이터로 만든 데모입니다. 왼쪽에서 지표를 하나 골라 담당자를 5초 안에 찾아보세요 →
+      </p>
       <div className="flex flex-1 min-h-0">
         <nav className="w-80 shrink-0 border-r border-slate/20 overflow-y-auto p-4 space-y-2">
           <IndicatorNav indicators={indicators} statusByIndicator={statusByIndicator} />
