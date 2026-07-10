@@ -35,7 +35,7 @@ export default async function IndicatorsLayout({
         <p>&quot;정보가 바뀌었어요&quot;를 클릭하여 담당자를 변경해 보세요.</p>
       </div>
       <div className="flex flex-1 min-h-0">
-        <nav className="w-80 shrink-0 border-r border-slate/20 overflow-y-auto p-4 space-y-5">
+        <nav className="w-80 shrink-0 border-r border-slate/20 overflow-y-auto p-4 space-y-2">
           <IndicatorNav indicators={indicators} statusByIndicator={statusByIndicator} />
         </nav>
         <main className="flex-1 overflow-y-auto p-6">{children}</main>
